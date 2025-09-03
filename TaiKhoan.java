@@ -6,7 +6,7 @@ public class TaiKhoan {
     private String soTaiKhoan;
     private String tenChuTaiKhoan;
     private double soDu;
-    private static double laiSuatNam = 0.05; // 5%
+    private static double laiSuatNam = 0.05; 
 
     public TaiKhoan(String soTaiKhoan, String tenChuTaiKhoan, double soDu) {
         this.soTaiKhoan = soTaiKhoan;
@@ -60,20 +60,16 @@ public class TaiKhoan {
         danhSach.add(new TaiKhoan("TK002", "Tran Thi B", 15000));
         danhSach.add(new TaiKhoan("TK003", "Le Van C", 8000));
 
-        // Giao dịch
         danhSach.get(0).napTien(2000);
         danhSach.get(1).rutTien(3000);
         danhSach.get(2).napTien(500);
 
-        // Hiển thị thông tin
         for (TaiKhoan tk : danhSach) {
             tk.hienThiThongTin();
         }
 
-        // Hiển thị lãi suất
         TaiKhoan.hienThiLaiSuat();
 
-        // Tìm kiếm theo số tài khoản
         String soTKCanTim = "TK002";
         for (TaiKhoan tk : danhSach) {
             if (tk.getSoTaiKhoan().equals(soTKCanTim)) {
@@ -82,7 +78,6 @@ public class TaiKhoan {
             }
         }
 
-        // Sắp xếp theo số dư giảm dần
         danhSach.sort((a, b) -> Double.compare(b.getSoDu(), a.getSoDu()));
         System.out.println("Danh sách sau khi sắp xếp theo số dư giảm dần:");
         for (TaiKhoan tk : danhSach) {
@@ -90,3 +85,4 @@ public class TaiKhoan {
         }
     }
 }
+
