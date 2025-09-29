@@ -1,1 +1,142 @@
+//B1
+package baitaptrenlop;
 
+abstract class Employee {
+    protected String name;
+    protected int age;
+    protected double salary;
+
+    public Employee(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public abstract void calculateSalary();
+
+    public void displayInfo() {
+        System.out.println("Tên: " + name + ", Tuổi: " + age + ", Lương: " + salary);
+    }
+}
+
+class OfficeEmployee extends Employee {
+    private int workingDays;
+    private static final double DAILY_SALARY = 100;
+
+    public OfficeEmployee(String name, int age, int workingDays) {
+        super(name, age);
+        this.workingDays = workingDays;
+    }
+
+    @Override
+    public void calculateSalary() {
+        this.salary = workingDays * DAILY_SALARY;
+    }
+}
+
+class TechnicalEmployee extends Employee {
+    private int workingHours;
+    private double hourlyRate;
+
+    public TechnicalEmployee(String name, int age, int workingHours, double hourlyRate) {
+        super(name, age);
+        this.workingHours = workingHours;
+        this.hourlyRate = hourlyRate;
+    }
+
+    @Override
+    public void calculateSalary() {
+        this.salary = workingHours * hourlyRate;
+    }
+}
+
+public class btvnb1 {
+    public static void main(String[] args) {
+        Employee e1 = new OfficeEmployee("An", 25, 22);
+        e1.calculateSalary();
+        e1.displayInfo();
+
+        Employee e2 = new TechnicalEmployee("Bình", 30, 160, 15);
+        e2.calculateSalary();
+        e2.displayInfo();
+    }
+}
+
+
+//B2
+package baitaptrenlop;
+
+interface EmailSender {
+    void sendEmail();
+}
+
+interface Programmer {
+    void code();
+}
+
+interface Salesperson {
+    void sell();
+}
+
+class OfficeEmployee implements EmailSender {
+    private String name;
+
+    public OfficeEmployee(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void sendEmail() {
+        System.out.println(name + " đang gửi email.");
+    }
+}
+
+class TechnicalEmployee implements EmailSender, Programmer {
+    private String name;
+
+    public TechnicalEmployee(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void sendEmail() {
+        System.out.println(name + " đang gửi email.");
+    }
+
+    @Override
+    public void code() {
+        System.out.println(name + " đang lập trình.");
+    }
+}
+
+class SalesEmployee implements EmailSender, Salesperson {
+    private String name;
+
+    public SalesEmployee(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void sendEmail() {
+        System.out.println(name + " đang gửi email.");
+    }
+
+    @Override
+    public void sell() {
+        System.out.println(name + " đang bán hàng.");
+    }
+}
+
+public class btvnb2 {
+    public static void main(String[] args) {
+        OfficeEmployee nv1 = new OfficeEmployee("Lan");
+        nv1.sendEmail();
+
+        TechnicalEmployee nv2 = new TechnicalEmployee("Hùng");
+        nv2.code();
+        nv2.sendEmail();
+
+        SalesEmployee nv3 = new SalesEmployee("Mai");
+        nv3.sell();
+        nv3.sendEmail();
+    }
+}
